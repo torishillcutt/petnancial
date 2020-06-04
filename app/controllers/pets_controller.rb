@@ -2,7 +2,9 @@ class PetsController < ApplicationController
 
   # GET: /pets
   get "/pets" do
-    erb :"/pets/index.html"
+    @user = current_user
+    @pets = @user.pets
+    erb :"/users/show.html"
   end
 
   # GET: /pets/new

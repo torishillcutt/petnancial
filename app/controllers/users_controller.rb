@@ -33,27 +33,37 @@ class UsersController < ApplicationController
     end
   end
 
-  get 'users/login' do
+  get '/users/login' do
       erb :'/users/login.html'
   end
 
   # GET: /users/5
   get "/users/:id" do
+   # binding.pry
+    if logged_in? && session[:user_id] == params[:id].to_i
+      @user = current_user
     erb :"/users/show.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # GET: /users/5/edit
-  get "/users/:id/edit" do
-    erb :"/users/edit.html"
-  end
+  #get "/users/:id/edit" do
+  #  if logged_in && session[:user_id] == params[:id]
+  #    @user = current_user
+  #  erb :"/users/edit.html"
+  #  else
+  #    redirect '/users/login'
+  #  end
+  #end
 
   # PATCH: /users/5
-  patch "/users/:id" do
-    redirect "/users/:id"
-  end
+  # redirect "/users/:id"
+  #end
 
   # DELETE: /users/5/delete
-  delete "/users/:id/delete" do
-    redirect "/users"
-  end
+  #delete "/users/:id/delete" do
+   # redirect "/users"
+  #end
 end

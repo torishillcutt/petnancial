@@ -10,7 +10,7 @@ X    Include more than one model class (e.g. User,  Post, Category)
 
  X   Include at least one belongs_to relationship on  another model (e.g. Post belongs_to User)
 
-    Include user accounts with unique login attribute  (username or email)
+ X   Include user accounts with unique login attribute  (username or email)
 
     Ensure that the belongs_to resource has routes  for Creating, Reading, Updating and Destroying
 
