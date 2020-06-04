@@ -37,3 +37,11 @@ end
         user_id: Faker::Number.between(from: 1, to: 100).to_i
     )
 end
+
+1000.times do
+    Item.create(
+        cost: Faker::Number.between(from: 1, to: 100).to_i,
+        order_date: Faker::Date.between(from: 30.days.ago, to: Date.today),
+        
+    )
+
