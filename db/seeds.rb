@@ -43,7 +43,7 @@ end
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 30.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 30.days.ago, to: 20.days.ago),
-        category: "Food"
+        category: "Food",
         pet_id: Faker::Number.between(from: 1, to: 500).to_i
     )
 end
@@ -53,7 +53,7 @@ end
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 365.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 365.days.ago, to: 20.days.ago),
-        category: "toy"
+        category: "toy",
         pet_id: Faker::Number.between(from: 1, to: 500).to_i
     )
 end
@@ -63,11 +63,25 @@ end
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 365.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 365.days.ago, to: 20.days.ago),
-        category: "accessory"
+        category: "accessory",
         pet_id: Faker::Number.between(from: 1, to: 500).to_i
     )
 end
 
+20.times do 
+    Vet.create(
+        name: "Dr. #{Faker::Name.name}",
+        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+        specialty: "general veterinary care"
+    )
+end
 
-
+1000.times do
+    Visit.create(
+        pet_id: Faker::Number.between(from: 1, to: 500).to_i,
+        vet_id: Faker::Number.between(from: 1, to: 20).to_i,
+        cost: Faker::Number.between(from: 1, to: 3000).to_i,
+        description: Faker::Lorem.sentence
+    )
+end
 
