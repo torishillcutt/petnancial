@@ -12,7 +12,24 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/users" do
-    redirect "/users"
+    #binding.pry
+    if EmailAddress.valid?(params[:email])
+      user = User.create(
+        name: params[:name],
+        email: params[:email],
+        password: params[:password],
+        location: params[:location]
+      )
+      if user.save
+        erb :"/users/login"
+      else 
+        @error = "Please try again"
+        erb :'/users/new.html'
+      end
+    else
+      @error = "Invalid email"
+      erb :"/users/new.html"
+    end
   end
 
   # GET: /users/5

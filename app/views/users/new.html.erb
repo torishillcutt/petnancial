@@ -1,1 +1,22 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Sign Up!</h1>
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+<br>
+
+<form action="/users" method="POST">
+  <label>Name: </label>
+  <input type="text" name="name" />
+
+  <labeL>Email: </labeL>
+  <input type="text" name="email" />
+
+  <label> Password: </label>
+  <input type="text" name="password" />
+
+  <label>Location: </label>
+  <input type="text" name="location" />
+  
+
+  <input type="submit" value="Sign Up">
+</form>

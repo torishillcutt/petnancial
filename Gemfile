@@ -12,5 +12,6 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'faker'
+gem 'email_address'
 
 
