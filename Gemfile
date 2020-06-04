@@ -12,4 +12,5 @@ gem 'pry'
 gem 'bcrypt'
 gem 'tux'
 gem 'faker'
+gem 'bcrypt'
 
