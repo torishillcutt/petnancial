@@ -1,0 +1,31 @@
+<h1>Log In!</h1>
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+<br>
+
+<% if @user %>
+
+<form action="/sessions" method="POST">
+  <label>Email: </label>
+  <input type="text" name="email"  value="<%= @user.email %>"/>
+
+
+  <label> Password: </label>
+  <input type="text" name="password" />
+
+  <input type="submit" value="Log in">
+</form>
+<% else %>
+<form action="/users" method="POST">
+  <label>Email: </label>
+  <input type="text" name="email" />
+
+
+  <label> Password: </label>
+  <input type="text" name="password" />
+
+  <input type="submit" value="Log in">
+</form>
+<% end %>
+

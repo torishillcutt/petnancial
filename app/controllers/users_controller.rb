@@ -21,7 +21,8 @@ class UsersController < ApplicationController
         location: params[:location]
       )
       if user.save
-        erb :"/users/login"
+        @user = user
+        erb :"/users/login.html"
       else 
         @error = "Please try again"
         erb :'/users/new.html'
@@ -30,6 +31,10 @@ class UsersController < ApplicationController
       @error = "Invalid email"
       erb :"/users/new.html"
     end
+  end
+
+  get 'users/login' do
+      erb :'/users/login.html'
   end
 
   # GET: /users/5
