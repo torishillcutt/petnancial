@@ -39,7 +39,6 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
-   # binding.pry
     if logged_in? && session[:user_id] == params[:id].to_i
       @user = current_user
     erb :"/users/show.html"

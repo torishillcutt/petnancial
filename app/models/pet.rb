@@ -3,4 +3,6 @@ class Pet < ActiveRecord::Base
     has_many :items
     has_many :visits
     has_many :vets, through: :visits
+
+    
 end
