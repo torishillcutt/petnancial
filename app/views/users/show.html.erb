@@ -1,1 +1,25 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1>Welcome, <%= @user.name %>!</h1>
+<h2>Here are your pets!</h2>
+<% pets = @user.pets.order(average_cost: :desc)%>
+
+
+<% pets.each do |pet| %>
+    <h3><%= pet.name %></h3>
+    <p><%= pet.category %></p>
+   
+    <% if pet == pets.first %>
+     <p>~*~*~*~*  Most expensive pet! ~*~*~*~*</p>
+    <% elsif  pet == pets.last %>
+      <p>~*~*~*~*~* Least expensive pet! ~*~*~*~*</p>
+    <% end %>
+    
+    <% if pet.average_cost != nil %>
+      <p><%= pet.average_cost %></p>
+    <% end %>
+
+    <br>
+
+
+
+
+<% end%>
