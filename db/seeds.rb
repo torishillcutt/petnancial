@@ -38,6 +38,24 @@ end
     )
 end
 
+20.times do 
+    Vet.create(
+        name: "Dr. #{Faker::Name.name}",
+        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+        specialty: "general veterinary care"
+    )
+end
+
+1000.times do
+    Visit.create(
+        pet_id: Faker::Number.between(from: 1, to: 500).to_i,
+        vet_id: Faker::Number.between(from: 1, to: 20).to_i,
+        cost: Faker::Number.between(from: 1, to: 3000).to_i,
+        description: Faker::Lorem.sentence,
+        date: Faker::Date.between(from: 365.days.ago, to: Date.today)
+    )
+end
+
 200.times do
     Item.create(
         cost: Faker::Number.between(from: 1, to: 100).to_i,
@@ -68,21 +86,5 @@ end
     )
 end
 
-20.times do 
-    Vet.create(
-        name: "Dr. #{Faker::Name.name}",
-        location: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-        specialty: "general veterinary care"
-    )
-end
 
-1000.times do
-    Visit.create(
-        pet_id: Faker::Number.between(from: 1, to: 500).to_i,
-        vet_id: Faker::Number.between(from: 1, to: 20).to_i,
-        cost: Faker::Number.between(from: 1, to: 3000).to_i,
-        description: Faker::Lorem.sentence,
-        date: Faker::Date.between(from: 365.days.ago, to: Date.today)
-    )
-end
 
