@@ -1,19 +1,33 @@
 class PetsController < ApplicationController
 
-  # GET: /pets
+ 
   get "/users/pets" do
+   if logged_in?
     @user = current_user
     erb :"/users/show.html"
+   else
+    redirect '/users/login'
+   end
   end
 
-  # GET: /pets/new
   get "/users/pets/new" do
-    erb :"/pets/new.html"
+    if logged_in?
+      erb :"/pets/new.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # POST: /pets
   post "/users/pets" do
-    redirect "/pets"
+    binding.pry
+    pet = Pet.create(
+      name: params[:name],
+      age: params[:age].to_i,
+      category: params[:category],
+      user_id: current_user.id
+    )
+    redirect "/users/pets"
   end
 
   # GET: /pets/5
@@ -28,11 +42,11 @@ class PetsController < ApplicationController
 
   # PATCH: /pets/5
   patch "/users/pets/:id" do
-    redirect "/pets/:id"
+    redirect "/users/pets/:id"
   end
 
   # DELETE: /pets/5/delete
   delete "/users/pets/:id/delete" do
-    redirect "/pets"
+    redirect "/users/pets"
   end
 end
