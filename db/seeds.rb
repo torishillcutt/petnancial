@@ -81,7 +81,8 @@ end
         pet_id: Faker::Number.between(from: 1, to: 500).to_i,
         vet_id: Faker::Number.between(from: 1, to: 20).to_i,
         cost: Faker::Number.between(from: 1, to: 3000).to_i,
-        description: Faker::Lorem.sentence
+        description: Faker::Lorem.sentence,
+        date: Faker::Date.between(from: 365.days.ago, to: Date.today)
     )
 end
 

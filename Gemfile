@@ -13,5 +13,6 @@ gem 'bcrypt'
 gem 'tux'
 gem 'faker'
 gem 'email_address'
+gem 'time_diff'
 
 
