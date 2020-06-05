@@ -1,1 +1,26 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @pet.name %></h1>
+<h3><%=  @pet.average_cost %></h3>
+
+<% if @pet == @user.pets.order(average_cost: :desc).first %>
+    <h3>Most Expensive Pet! </h3>
+<% elsif @pet == @user.pets.order(average_cost: :desc).last %>
+    <h3>Least Expensive Pet!</h3>
+<% end %>
+<ul>
+<%#IF STATEMENT FOR CATEGORY AND PICTURE%>
+<li><%= @pet.age %>years old!</li>
+<li><%= @pet.care_instructions %></li>
+</ul>
+
+<ul>
+<% @pet.items.each do |item|  %>
+    <li><%= item.category %></li>
+    <li><%= item.cost %></li>
+    <% end %>
+
+    <% @pet.visits.each do |visit| %>
+    <li>Vet Visit: <%= visit.date %></li>
+    <li>Cost: <%= visit.cost %></li>
+    <% end %>
+    </ul>
+<p>EDIT THIS PET, DELETE THIS PET, OR ADD AN ITEM OR VISIT TO THIS PET</p>

@@ -18,7 +18,6 @@ class PetsController < ApplicationController
     end
   end
 
-  # POST: /pets
   post "/users/pets" do
     binding.pry
     pet = Pet.create(
@@ -32,7 +31,14 @@ class PetsController < ApplicationController
 
   # GET: /pets/5
   get "/users/pets/:id" do
-    erb :"/pets/show.html"
+    
+    @pet = Pet.find(params[:id])
+    if logged_in? and @pet.user_id == current_user.id
+      @user = current_user
+      erb :"/pets/show.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # GET: /pets/5/edit
