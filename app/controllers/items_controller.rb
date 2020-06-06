@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   # GET: /items
-  get "/items" do
+  get "/users/pets/items" do
     erb :"/items/index.html"
   end
 
@@ -16,8 +16,15 @@ class ItemsController < ApplicationController
   end
 
   # GET: /items/5
-  get "/items/:id" do
-    erb :"/items/show.html"
+  get "/users/pets/items/:id" do
+    @item = Item.find(params[:id])
+    @user = User.find(@item.pet.user_id)
+    @pet = Pet.find(@item.pet.id)
+    if logged_in? && @user == current_user
+      erb :"/items/show.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # GET: /items/5/edit

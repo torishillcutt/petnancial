@@ -14,19 +14,22 @@
 <br>
 </ul>
 
-<ul>
 <% @pet.items.each do |item|  %>
+<ul>
     <li><%= item.category %></li>
-    <li><%= item.cost %></li>
+    <li>Cost: $<%= item.cost %></li>
+    </ul>
+    <button><a href="/users/pets/items/<%= item.id %>">View Item</a></button>
+    <br>
     <br>
     <% end %>
 
     <% @pet.visits.each do |visit| %>
+    <ul>
     <li>Vet Visit: <%= visit.date %></li>
-    <li>Cost: <%= visit.cost %></li>
-    <br>
+    <li>Cost: $<%= visit.cost %></li>
+    <br></ul>
     <% end %>
-    </ul>
 
 <button><a href="/users/pets/<%= @pet.id %>/edit">Edit <%= @pet.name %></a></button>
 
