@@ -1,33 +1,42 @@
 <h1><%= @pet.name %></h1>
-<h3><%=  @pet.average_cost %></h3>
+<h3><%= @pet.name %>'s Average Cost:  $<%=  @pet.average_cost %></h3>
 
 <% if @pet == @user.pets.order(average_cost: :desc).first %>
-    <h3>Most Expensive Pet! </h3>
+    <h3><%= @pet.name %> is your most expensive pet!</h3>
 <% elsif @pet == @user.pets.order(average_cost: :desc).last %>
-    <h3>Least Expensive Pet!</h3>
+    <h3><%= @pet.name %> is your least expensive pet!</h3>
 <% end %>
 <ul>
 <%#IF STATEMENT FOR CATEGORY AND PICTURE%>
-<li><%= @pet.age %>years old!</li>
-<li><%= @pet.care_instructions %></li>
+<li><%= @pet.name %> is <%= @pet.age %> years old.</li>
+<br>
+<li><%= @pet.name %>'s Care Instructions: <%= @pet.care_instructions %></li>
+<br>
 </ul>
 
 <ul>
 <% @pet.items.each do |item|  %>
     <li><%= item.category %></li>
     <li><%= item.cost %></li>
+    <br>
     <% end %>
 
     <% @pet.visits.each do |visit| %>
     <li>Vet Visit: <%= visit.date %></li>
     <li>Cost: <%= visit.cost %></li>
+    <br>
     <% end %>
     </ul>
-<p>EDIT THIS PET,  OR ADD AN ITEM OR VISIT TO THIS PET</p>
 
-<br>
+<button><a href="/users/pets/<%= @pet.id %>/edit">Edit <%= @pet.name %></a></button>
+
 <br>
 <form action="/users/pets/<%= @pet.id %>/delete" method="POST">
     <input id="hidden" type="hidden" name="_method" value="delete">
-    <input type="submit" id="delete" value="Delete this pet">
+    <input type="submit" id="delete" value="Delete <%= @pet.name %>">
 </form>
+<br>
+<br>
+<button><a href="/users/<%= @pet.user_id %>">Return Home</a></button>
+
+ <button><a href="/logout">Log out</a></button>
