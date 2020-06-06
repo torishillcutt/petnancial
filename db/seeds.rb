@@ -56,8 +56,9 @@ end
     )
 end
 
-200.times do
+1200.times do
     Item.create(
+        name: Faker::Food.dish,
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 30.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 30.days.ago, to: 20.days.ago),
@@ -68,6 +69,7 @@ end
 
 200.times do
     Item.create(
+        name: Faker::Device.model_name,
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 365.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 365.days.ago, to: 20.days.ago),
@@ -78,6 +80,7 @@ end
 
 200.times do
     Item.create(
+        name: Faker::Vehicle.make_and_model,
         cost: Faker::Number.between(from: 1, to: 100).to_i,
         order_date: Faker::Date.between(from: 365.days.ago, to: Date.today),
         arrival_date: Faker::Date.between(from: 365.days.ago, to: 20.days.ago),

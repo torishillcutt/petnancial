@@ -1,12 +1,13 @@
 class ItemsController < ApplicationController
 
   # GET: /items
-  get "/users/pets/items" do
+  get "/users/pets/:id/items" do
     erb :"/items/index.html"
   end
 
   # GET: /items/new
-  get "/items/new" do
+  get "/users/pets/:id/items/new" do
+    @pet = Pet.find(params[:id])
     erb :"/items/new.html"
   end
 
@@ -15,9 +16,9 @@ class ItemsController < ApplicationController
     redirect "/items"
   end
 
-  # GET: /items/5
-  get "/users/pets/items/:id" do
-    @item = Item.find(params[:id])
+
+  get "/users/pets/:id/items/:item_id" do
+    @item = Item.find(params[:item_id])
     @user = User.find(@item.pet.user_id)
     @pet = Pet.find(@item.pet.id)
     if logged_in? && @user == current_user

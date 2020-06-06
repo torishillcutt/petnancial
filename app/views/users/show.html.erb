@@ -9,6 +9,7 @@
 
 
 <% pets.each do |pet| %>
+<div>
     <h3><%= pet.name %></h3>
     <p><%= pet.category %></p>
    
@@ -26,8 +27,11 @@
     <button><a href="/users/pets/<%= pet.id %>/edit">Edit <%= pet.name %></a> </button>
 
     <br>
-
+</div>
 <% end%>
+
+
+
 <br>
 <% end %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200604235555) do
+ActiveRecord::Schema.define(version: 20200606222159) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "cost"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20200604235555) do
     t.integer  "pet_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "name"
   end
 
   create_table "pets", force: :cascade do |t|
