@@ -5,3 +5,7 @@
 
 
 
+<form action="/users/pets/<%= @item.pet_id %>/items/<%= @item.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" id="delete" value="Delete <%= @item.name %>">
+</form>
