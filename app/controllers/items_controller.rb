@@ -5,14 +5,15 @@ class ItemsController < ApplicationController
     erb :"/items/index.html"
   end
 
-  # GET: /items/new
+
   get "/users/pets/:id/items/new" do
     @pet = Pet.find(params[:id])
     erb :"/items/new.html"
   end
 
-  # POST: /items
   post "/users/pets/:id/items" do
+    @pet = Pet.find(params[:id])
+    if logged_in? && @pet.user_id == current_user
     @item = Item.create(
       name: params[:name],
       category: params[:category],
@@ -21,6 +22,9 @@ class ItemsController < ApplicationController
       pet_id: params[:id]
     )
     redirect "/users/pets/#{@item.pet_id}/items/#{@item.id}"
+    else
+      redirect '/users/login'
+    end
   end
 
 
@@ -36,8 +40,13 @@ class ItemsController < ApplicationController
   end
 
   # GET: /items/5/edit
-  get "/items/:id/edit" do
-    erb :"/items/edit.html"
+  get "users/pets/:id/items/:user_id/edit" do
+    @pet = Pet.find(params[:id])
+    if logged_in? && @pet.user_id == current_user
+      erb :"/items/edit.html"
+    else
+      redirect '/users/login'
+    end
   end
 
   # PATCH: /items/5
