@@ -1,17 +1,22 @@
 <h1>Edit <%= @pet.name %></h1>
+
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+
 <form action="/users/pets/<%= @pet.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Name: </label>
   <input type="text" name="name" value="<%= @pet.name %>" />
 
   <label>Age: </label>
-  <input type="number" name="age" value="<%= @pet.age %>"/>
+  <input type="number" name="age" value="<%= @pet.age %>" />
 
   <label>Type: </label>
-  <input type="text" name="category" />
+  <input type="text" name="category" value="<%= @pet.category %>" />
 
   <label>Care Instructions: </label>
-  <input type="text" name="care_instructions" />
+  <input type="text" name="care_instructions" value="<%= @pet.care_instructions %>" />
 
 <input type="Submit" name="Edit <%= @pet.name %>!">
 

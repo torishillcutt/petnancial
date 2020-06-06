@@ -43,12 +43,28 @@ class PetsController < ApplicationController
 
   # GET: /pets/5/edit
   get "/users/pets/:id/edit" do
-    erb :"/pets/edit.html"
+    @pet = Pet.find(params[:id])
+    if logged_in? and @pet.user_id == current_user.id
+     erb :"/pets/edit.html"
+   else
+    redirect '/users/login'
+   end
   end
 
   # PATCH: /pets/5
   patch "/users/pets/:id" do
-    redirect "/users/pets/:id"
+    @pet = Pet.find(params[:id])
+    #binding.pry
+    @pet.name = params[:name]
+    @pet.age = params[:age].to_i
+    @pet.category = params[:category]
+    @pet.care_instructions = params[:care_instructions]
+    if @pet.save
+      redirect "/users/pets/#{@pet.id}"
+    else
+      @error = "please try again!"
+      erb :'/pets/edit.html'
+    end
   end
 
   # DELETE: /pets/5/delete
