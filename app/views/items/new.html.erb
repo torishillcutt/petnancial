@@ -1,10 +1,16 @@
-<<h1>Add a new item!</h1>
+<h1>Add a new item!</h1>
 <form action="/users/pets/<%= @pet.id %>/items" method="POST">
+<label>Name: </label>
+<input type="text" name="name" />
+
+<label>Cost: </label>
 <input type="number" name="cost" />
-<%#cost%>
-<%#order_date%>
-<%#arrival_date%>
-<%#complete_date%>
-<%#category%>
-<%# pet_id %>
+
+<label>Category: </label>
+<input type="text" name="category">
+
+<label>Order Date: </label>
+<input type="date" name="order_date" />
+
+<input type="submit" name="Create a new Item!">
 </form>

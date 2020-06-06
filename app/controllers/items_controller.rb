@@ -12,8 +12,15 @@ class ItemsController < ApplicationController
   end
 
   # POST: /items
-  post "/items" do
-    redirect "/items"
+  post "/users/pets/:id/items" do
+    @item = Item.create(
+      name: params[:name],
+      category: params[:category],
+      cost: params[:cost],
+      order_date: params[:order_date],
+      pet_id: params[:id]
+    )
+    redirect "/users/pets/#{@item.pet_id}/items/#{@item.id}"
   end
 
 
