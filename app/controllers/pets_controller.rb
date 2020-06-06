@@ -29,9 +29,8 @@ class PetsController < ApplicationController
     redirect "/users/pets"
   end
 
-  # GET: /pets/5
-  get "/users/pets/:id" do
-    
+
+  get "/users/pets/:id" do 
     @pet = Pet.find(params[:id])
     if logged_in? and @pet.user_id == current_user.id
       @user = current_user
@@ -41,7 +40,6 @@ class PetsController < ApplicationController
     end
   end
 
-  # GET: /pets/5/edit
   get "/users/pets/:id/edit" do
     @pet = Pet.find(params[:id])
     if logged_in? and @pet.user_id == current_user.id
@@ -51,10 +49,9 @@ class PetsController < ApplicationController
    end
   end
 
-  # PATCH: /pets/5
+
   patch "/users/pets/:id" do
     @pet = Pet.find(params[:id])
-    #binding.pry
     @pet.name = params[:name]
     @pet.age = params[:age].to_i
     @pet.category = params[:category]
@@ -69,6 +66,8 @@ class PetsController < ApplicationController
 
   # DELETE: /pets/5/delete
   delete "/users/pets/:id/delete" do
+    @pet = Pet.find(params[:id])
+    @pet.delete
     redirect "/users/pets"
   end
 end

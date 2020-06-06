@@ -23,4 +23,11 @@
     <li>Cost: <%= visit.cost %></li>
     <% end %>
     </ul>
-<p>EDIT THIS PET, DELETE THIS PET, OR ADD AN ITEM OR VISIT TO THIS PET</p>
+<p>EDIT THIS PET,  OR ADD AN ITEM OR VISIT TO THIS PET</p>
+
+<br>
+<br>
+<form action="/users/pets/<%= @pet.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" id="delete" value="Delete this pet">
+</form>
