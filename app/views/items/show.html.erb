@@ -3,9 +3,19 @@
 <h2>Cost: <%= @item.cost %></h2>
 <p>Order date:  <%= @item.order_date %></p>
 
+<button><a href="/users/pets/<%= @item.pet_id %>/items/<%= @item.id %>/edit">Edit  <%= @item.name %></a></button>
+
 
 
 <form action="/users/pets/<%= @item.pet_id %>/items/<%= @item.id %>/delete" method="POST">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" id="delete" value="Delete <%= @item.name %>">
 </form>
+
+<br>
+
+<button><a href="/users/pets/<%= @item.pet_id %>">Return to <%= @item.pet.name %></a></button>
+
+<button><a href="/users/<%= @item.pet.user_id %>">Return Home</button>
+<button><a href="/logout>">Logout</button>
+<br>

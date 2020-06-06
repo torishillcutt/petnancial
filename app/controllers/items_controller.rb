@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
 
   # GET: /items
-  get "/users/pets/:id/items" do
-    erb :"/items/index.html"
-  end
+  #get "/users/pets/:id/items" do
+    #erb :"/items/index.html"
+  #end
 
 
   get "/users/pets/:id/items/new" do
@@ -54,9 +54,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  # PATCH: /items/5
   patch "/users/pets/:id/items/:item_id" do
-    binding.pry
     @item = Item.find(params[:item_id])
     @item.name = params[:name]
     @item.cost = params[:cost].to_i
@@ -70,7 +68,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  # DELETE: /items/5/delete
   delete "/users/pets/:id/items/:item_id/delete" do
     @pet = Pet.find(params[:id])
     @user = User.find(@pet.user_id)

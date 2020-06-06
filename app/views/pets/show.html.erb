@@ -14,6 +14,9 @@
 <br>
 </ul>
 
+<button><a href="/users/pets/<%= @pet.id %>/items/new">Add an Item</a></button>
+<br>
+
 <% @pet.items.each do |item|  %>
   <div>
   <h3><%= item.name %></h3>
@@ -22,6 +25,7 @@
     <li>Cost: $<%= item.cost %></li>
   </ul>
   <button><a href="/users/pets/<%= @pet.id %>/items/<%= item.id %>">View  <%= item.name %></a></button>
+  <button><a href="/users/pets/<%= @pet.id %>/items/<%= item.id %>/edit">Edit  <%= item.name %></a></button>
   <br>
   <br>
   </div>
