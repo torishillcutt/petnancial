@@ -1,4 +1,9 @@
 <h1>Welcome, <%= @user.name %>!</h1>
+<br>
+<button><a href="/users/pets/new">Add a new pet!</a></button>
+<br>
+<br>
+<% if @user.pets.length > 0 %>
 <h2>Here are your pets!</h2>
 <% pets = @user.pets.order(average_cost: :desc)%>
 
@@ -14,13 +19,18 @@
     <% end %>
     
     <% if pet.average_cost != nil %>
-      <p><%= pet.average_cost %></p>
+      <p>Average monthly cost: $<%= pet.average_cost %></p>
     <% end %>
 
-    <p><a href="/users/pets/<%= pet.id  %>">View more about <%= pet.name %></a></p>
+    <button><a href="/users/pets/<%= pet.id  %>">View more about <%= pet.name %></a></button>
+    <button><a href="/users/pets/<%= pet.id %>/edit">Edit <%= pet.name %></a> </button>
 
     <br>
 
 <% end%>
+<br>
+<% end %>
 
-    <a href="/logout">Log out</a>
+<br>
+
+    <button><a href="/logout">Log out</a></button>
