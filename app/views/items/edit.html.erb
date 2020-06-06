@@ -1,4 +1,9 @@
 <h1>Edit <%= @item.name %>!</h1>
+
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+
 <form action="/users/pets/<%= @pet.id %>/items/<%= @item.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="patch">
 <label>Name: </label>
