@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
     )
     redirect "/users/pets/#{@item.pet_id}/items/#{@item.id}"
     else
+      @error = "invalid credentials"
       redirect '/users/login'
     end
   end
@@ -35,22 +36,26 @@ class ItemsController < ApplicationController
     if logged_in? && @user == current_user
       erb :"/items/show.html"
     else
+      @error = "invalid credentials"
       redirect '/users/login'
     end
   end
 
   # GET: /items/5/edit
-  get "users/pets/:id/items/:user_id/edit" do
+  get "/users/pets/:id/items/:item_id/edit" do
     @pet = Pet.find(params[:id])
-    if logged_in? && @pet.user_id == current_user
+    @user = User.find(@pet.user_id)
+    if logged_in? &&  @user == current_user
+      @item = Item.find(params[:item_id])
       erb :"/items/edit.html"
     else
+      @error = "invalid credentials"
       redirect '/users/login'
     end
   end
 
   # PATCH: /items/5
-  patch "/items/:id" do
+  patch "/users/pets/:id/items/:item_id" do
     redirect "/items/:id"
   end
 
