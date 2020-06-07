@@ -32,11 +32,18 @@
 <% end %>
 
     <% @pet.visits.each do |visit| %>
+    <div>
     <ul>
-    <li>Vet Visit: <%= visit.description %></li>
-    <li><%= visit.date %></li>
-    <li>Cost: $<%= visit.cost %></li>
-    <br></ul>
+      <li>Vet Visit: <%= visit.description %></li>
+      <li>Veterinarian: <%= visit.vet.name %></li>
+      <li><%= visit.date %></li>
+      <li>Cost: $<%= visit.cost %></li>
+    </ul>
+      <button><a href="/users/pets/<%= @pet.id %>/visits/<%= visit.id %>">View This Visit</a></button>
+      <button><a href="/users/pets/<%= @pet.id %>/visits/<%= visit.id %>/edit">Edit This Visit</a></button>
+      <br>
+      <br>
+      </div>
     <% end %>
 
 <button><a href="/users/pets/<%= @pet.id %>/edit">Edit <%= @pet.name %></a></button>
