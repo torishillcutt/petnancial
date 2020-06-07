@@ -1,5 +1,10 @@
 <h1>Add a new visit!</h1>
-<form action="/users/pets/<%= @pet.id %>/items" method="POST">
+
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+
+<form action="/users/pets/<%= @pet.id %>/visits" method="POST">
 <label>Cost: </label>
 <input type="number" name="visit[cost]" />
 
