@@ -72,9 +72,34 @@ class VisitsController < ApplicationController
         end
     end
   
-    # PATCH: /visits/5
+
     patch "/users/pets/:id/visits/:visit_id" do
-      redirect "/users/pets/:id/visits/:visit_id"
+        @pet = Pet.find(params[:id])
+        @vets = @pet.visits.map {|visit| Vet.find(visit.vet_id)}.uniq
+        @visit = Visit.find(params[:visit_id])
+
+        if params[:vet][:id]
+            @visit.vet_id = params[:vet][:id]
+            @vet = Vet.find(@visit.vet_id)
+        else
+            @vet = Vet.create(
+                name: params[:vet][:name],
+                location: params[:vet][:location],
+                specialty: params[:vet][:specialty]
+            ) 
+        end
+
+        @visit.cost = params[:visit][:cost]
+        @visit.date = params[:visit][:date]
+        @visit.description = params[:visit][:description]
+        @visit.vet_location = @vet.location
+
+        if @visit.save
+          redirect "/users/pets/#{@pet.id}/visits/#{@visit.id}"
+        else
+          @error = "Please try again"
+          erb :"/visits/edit.html"
+        end
     end
   
     # DELETE: /visits/5/delete
