@@ -2,8 +2,6 @@ class Item < ActiveRecord::Base
     belongs_to :pet
 
 
-
-    ######CALL BACK MUST ACCOUNT FOR IF THERE IS NO VISITS, OR ONLY ONE VISIT
   after_save do
     pet = Pet.find(self.pet.id)
     if pet.visits.length > 1 && pet.items.length > 1

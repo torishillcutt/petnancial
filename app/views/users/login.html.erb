@@ -1,4 +1,4 @@
-<h1>Log In!</h1>
+<h1>Log In</h1>
 <% if @error %>
 <p><%= @error %></p>
 <% end%>
@@ -27,5 +27,9 @@
 
   <input type="submit" value="Log in">
 </form>
+<% end %>
+<br><br>
+<% if @error == "Invalid login credentials"%>
+<button><a href="/users/new">Sign up</a></button>
 <% end %>
 
