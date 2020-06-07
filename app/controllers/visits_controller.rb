@@ -104,6 +104,14 @@ class VisitsController < ApplicationController
   
     # DELETE: /visits/5/delete
     delete "/users/pets/:id/visits/:visit_id/delete" do
-      redirect "/users/pets/:id"
+        @pet = Pet.find(params[:id])
+        @visit = Visit.find9params[:visit_id]
+        if logged_in? && @pet.user_id == current_user.id
+            @visit.delete
+            redirect "/users/pets/#{@pet.id}"
+        else
+            @error = "invalid credentials"
+            redirect '/users/login'
+        end
     end
   end

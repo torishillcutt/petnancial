@@ -9,3 +9,8 @@
 
 <h3><%= @visit.vet.name.capitalize %></h3>
 <p>Specialty: <%= @visit.vet.specialty %></p>
+
+<form action="/users/pets/<%= @visit.pet_id %>/items/<%= @visit.id %>/delete" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" id="delete" value="Delete this vet visit">
+</form>

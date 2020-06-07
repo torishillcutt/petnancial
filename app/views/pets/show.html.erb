@@ -33,7 +33,8 @@
 
     <% @pet.visits.each do |visit| %>
     <ul>
-    <li>Vet Visit: <%= visit.date %></li>
+    <li>Vet Visit: <%= visit.description %></li>
+    <li><%= visit.date %></li>
     <li>Cost: $<%= visit.cost %></li>
     <br></ul>
     <% end %>
