@@ -8,7 +8,10 @@ class ItemsController < ApplicationController
 
   post "/users/pets/:id/items" do
     @pet = Pet.find(params[:id])
-    if logged_in? && !params[:order_date].empty? && @pet.user_id == current_user.id
+  if logged_in? && params[:order_date].empty? && @pet.user_id == current_user.id
+    @error = "Oops, Please try again!" 
+    erb :"/items/new.html"
+  elsif logged_in? && !params[:order_date].empty? && @pet.user_id == current_user.id
     @item = Item.create(
       name: params[:name],
       category: params[:category],
@@ -19,7 +22,7 @@ class ItemsController < ApplicationController
       if @item.save
         redirect "/users/pets/#{@item.pet_id}/items/#{@item.id}"
       else
-        @error = "Please try again"
+        @error = "Oops, Please try again"
         erb :"/items/new.html"
       end
     else
