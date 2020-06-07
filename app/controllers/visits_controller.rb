@@ -9,7 +9,6 @@ class VisitsController < ApplicationController
   
 
     post "/users/pets/:id/visits" do
-        binding.pry
         @pet = Pet.find(params[:id])
         if logged_in? && @pet.user_id == current_user.id
          if params[:vet][:id]
@@ -56,13 +55,21 @@ class VisitsController < ApplicationController
           @visit = Visit.find(params[:visit_id])
           erb :"/visits/show.html"
         else
+            @error = "invalid credentials"
             redirect '/users/login'
         end
     end
   
-    # GET: /visits/5/edit
     get "/users/pets/:id/visits/:visit_id/edit" do
-      erb :"/visits/edit.html"
+        @pet = Pet.find(params[:id])
+        @vets = @pet.visits.map {|visit| Vet.find(visit.vet_id)}.uniq
+        if logged_in? && @pet.user_id == current_user.id
+          @visit = Visit.find(params[:visit_id])
+          erb :"/visits/edit.html"
+        else
+            @error = "invalid credentials"
+            redirect '/users/login'
+        end
     end
   
     # PATCH: /visits/5
