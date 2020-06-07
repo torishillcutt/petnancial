@@ -7,6 +7,7 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 run ApplicationController
+use VisitsController
 use ItemsController
 use PetsController
 use UsersController

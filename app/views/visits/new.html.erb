@@ -1,1 +1,39 @@
-<h1>insert a formto create a new instance of your model</h1>
+<h1>Add a new visit!</h1>
+<form action="/users/pets/<%= @pet.id %>/items" method="POST">
+<label>Cost: </label>
+<input type="number" name="visit[cost]" />
+
+<label>Description: </label>
+<input type="text" name="visit[description]" />
+
+<label>Category: </label>
+<input type="text" name="visit[category]">
+
+<label>Date: </label>
+<input type="date" name="visit[date]" />
+<br>
+<br>
+
+<h3>Add a new Vet or select an exisisting on below</h3>
+
+
+<label>Name: </label>
+<input type="text" name="vet[name]" />
+
+<label>Locations: </label>
+<input type="text" name="vet[location]" />
+
+<label>Specialty: </label>
+<input type="text" name="vet[specialty]" />
+<br>
+<br>
+
+<% @vets.each do |vet|%>
+    <input type="radio" name="vet[id]" id="<%= vet.id %>" value="<%= vet.id %>"><%= vet.name %><br>
+  <% end %>
+  <br>
+
+<input type="submit" name="Create a new visit!">
+</form>
+
+ 

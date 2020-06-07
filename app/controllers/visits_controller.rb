@@ -2,6 +2,8 @@ class VisitsController < ApplicationController
 
   
     get "/users/pets/:id/visits/new" do
+        @pet = Pet.find(params[:id])
+        @vets = @pet.visits.map {|visit| Vet.find(visit.vet_id)}.uniq
       erb :"/visits/new.html"
     end
   
