@@ -1,21 +1,13 @@
 class UsersController < ApplicationController
 
-  # GET: /users
-  get "/users" do
-    erb :"/users/index.html"
-  end
-
-  # GET: /users/new
   get "/users/new" do
     erb :"/users/new.html"
   end
 
-  # POST: /users
   post "/users" do
-    #binding.pry
     if EmailAddress.valid?(params[:email])
       user = User.create(
-        name: params[:name],
+        name: params[:name].capitalize,
         email: params[:email],
         password: params[:password],
         location: params[:location]
@@ -37,7 +29,7 @@ class UsersController < ApplicationController
       erb :'/users/login.html'
   end
 
-  # GET: /users/5
+
   get "/users/:id" do
     if logged_in? && session[:user_id] == params[:id].to_i
       @user = current_user

@@ -11,6 +11,8 @@
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" id="delete" value="Delete <%= @item.name %>">
 </form>
+<button><a href="/users/pets/<%= @item.pet_id %>/items/new">Add another item</a></button>
+<br>
 
 <br>
 

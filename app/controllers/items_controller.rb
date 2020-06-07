@@ -1,10 +1,5 @@
 class ItemsController < ApplicationController
 
-  # GET: /items
-  #get "/users/pets/:id/items" do
-    #erb :"/items/index.html"
-  #end
-
 
   get "/users/pets/:id/items/new" do
     @pet = Pet.find(params[:id])
@@ -13,7 +8,7 @@ class ItemsController < ApplicationController
 
   post "/users/pets/:id/items" do
     @pet = Pet.find(params[:id])
-    if logged_in? && @pet.user_id == current_user
+    if logged_in? && @pet.user_id == current_user.id
     @item = Item.create(
       name: params[:name],
       category: params[:category],

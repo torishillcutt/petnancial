@@ -64,7 +64,6 @@ class PetsController < ApplicationController
     end
   end
 
-  # DELETE: /pets/5/delete
   delete "/users/pets/:id/delete" do
     @pet = Pet.find(params[:id])
     @pet.delete
