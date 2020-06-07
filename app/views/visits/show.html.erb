@@ -4,13 +4,24 @@
 <p>Description:  <%= @visit.description %></p>
 <br><br>
 
-<h2>Vet:</h2>
+<h2>Veterinarian:</h2>
 
 
 <h3><%= @visit.vet.name.capitalize %></h3>
 <p>Specialty: <%= @visit.vet.specialty %></p>
 
+<button><a href="/users/pets/<%= @visit.pet_id %>/visits/<%= @visit.id %>/edit">Edit This vet visit</a></button>
+
 <form action="/users/pets/<%= @visit.pet_id %>/items/<%= @visit.id %>/delete" method="POST">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" id="delete" value="Delete this vet visit">
 </form>
+
+<button><a href="/users/pets/<%= @visit.pet_id %>/visits/new">Add another vet visit</a></button>
+<br>
+<br>
+
+<button><a href="/users/pets/<%= @visit.pet_id %>">Return to <%= @visit.pet.name %></a></button>
+
+<button><a href="/users/<%= @visit.pet.user_id %>">Return Home</button>
+<button><a href="/logout>">Logout</button>
