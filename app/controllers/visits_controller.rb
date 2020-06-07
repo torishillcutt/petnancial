@@ -81,18 +81,22 @@ class VisitsController < ApplicationController
         if params[:vet][:id]
             @visit.vet_id = params[:vet][:id]
             @vet = Vet.find(@visit.vet_id)
+            @visit.vet_location = @vet.location
+            @visit.vet_id = @vet.id
         else
             @vet = Vet.create(
                 name: params[:vet][:name],
                 location: params[:vet][:location],
                 specialty: params[:vet][:specialty]
-            ) 
+            )
+            @visit.vet_location = @vet.location
+            @visit.vet_id = @vet.id 
         end
 
         @visit.cost = params[:visit][:cost]
         @visit.date = params[:visit][:date]
         @visit.description = params[:visit][:description]
-        @visit.vet_location = @vet.location
+        
 
         if @visit.save
           redirect "/users/pets/#{@pet.id}/visits/#{@visit.id}"
@@ -102,7 +106,7 @@ class VisitsController < ApplicationController
         end
     end
   
-    # DELETE: /visits/5/delete
+
     delete "/users/pets/:id/visits/:visit_id/delete" do
         @pet = Pet.find(params[:id])
         @visit = Visit.find9params[:visit_id]

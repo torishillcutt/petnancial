@@ -32,7 +32,7 @@
 <br>
 
 <% @vets.each do |vet|%>
-    <input type="radio" name="vet[id]" id="<%= vet.id %>" value="<%= vet.id %>" <%='checked' if @visit.vet == vet %>><%= vet.name %><br>
+    <input type="radio" name="vet[id]" id="<%= vet.id %>" value="<%= vet.id %>"><%= vet.name %><br>
   <% end %>
   <br>
 
