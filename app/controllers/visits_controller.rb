@@ -50,9 +50,14 @@ class VisitsController < ApplicationController
         end
     end
   
-    # GET: /visits/5
     get "/users/pets/:id/visits/:visit_id" do
-      erb :"/visits/show.html"
+        @pet = Pet.find(params[:id])
+        if logged_in && @pet.user_id == current_user.id
+          @visit = Visit.find(params[:visit_id])
+          erb :"/visits/show.html"
+        else
+            redirect '/users/login'
+        end
     end
   
     # GET: /visits/5/edit
