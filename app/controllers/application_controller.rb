@@ -32,7 +32,6 @@ class ApplicationController < Sinatra::Base
   helpers do
 
     def logged_in?
-      #just returns true or false if someone is logged in
       !!session[:user_id]
     end
 

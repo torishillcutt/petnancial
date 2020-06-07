@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
         erb :"/items/new.html"
       end
     else
-      @error = "invalid credentials"
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
     if logged_in? && @user == current_user
       erb :"/items/show.html"
     else
-      @error = "invalid credentials"
+      @error = "Please log in!"
       redirect '/users/login'
     end
   end
@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:item_id])
       erb :"/items/edit.html"
     else
-      @error = "invalid credentials"
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end
@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect "/users/pets/#{@item.pet_id}/items/#{@item.id}"
     else
-      @error = "please try again!"
+      @error = "Please, try again!"
       erb :"/items/edit.html"
     end
   end
@@ -76,7 +76,7 @@ class ItemsController < ApplicationController
       @item.delete
       redirect "/users/pets/#{@pet.id}"
     else
-      @error = "invalid credentials"
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end

@@ -3,8 +3,13 @@ class VisitsController < ApplicationController
   
     get "/users/pets/:id/visits/new" do
         @pet = Pet.find(params[:id])
-        @vets = @pet.visits.map {|visit| Vet.find(visit.vet_id)}.uniq
-      erb :"/visits/new.html"
+        if logged_in? && @pet.user_id == current_user.id
+          @vets = @pet.visits.map {|visit| Vet.find(visit.vet_id)}.uniq
+          erb :"/visits/new.html"
+        else 
+            @error = "Please, log in!"
+            redirect '/users/login'
+        end 
     end
   
 
@@ -44,7 +49,7 @@ class VisitsController < ApplicationController
             erb :"/visits/new.html"
           end
         else 
-          @error = "invalid credentials"
+          @error = "Please, log in!"
           redirect '/users/login'
         end
     end
@@ -55,7 +60,7 @@ class VisitsController < ApplicationController
           @visit = Visit.find(params[:visit_id])
           erb :"/visits/show.html"
         else
-            @error = "invalid credentials"
+            @error = "Please, log in!"
             redirect '/users/login'
         end
     end
@@ -67,7 +72,7 @@ class VisitsController < ApplicationController
           @visit = Visit.find(params[:visit_id])
           erb :"/visits/edit.html"
         else
-            @error = "invalid credentials"
+            @error = "Please, log in!"
             redirect '/users/login'
         end
     end
@@ -101,7 +106,7 @@ class VisitsController < ApplicationController
         if @visit.save
           redirect "/users/pets/#{@pet.id}/visits/#{@visit.id}"
         else
-          @error = "Please try again"
+          @error = "Please, try again"
           erb :"/visits/edit.html"
         end
     end

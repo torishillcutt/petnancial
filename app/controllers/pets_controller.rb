@@ -6,6 +6,7 @@ class PetsController < ApplicationController
     @user = current_user
     erb :"/users/show.html"
    else
+    @error = "Please, Log in!"
     redirect '/users/login'
    end
   end
@@ -14,6 +15,7 @@ class PetsController < ApplicationController
     if logged_in?
       erb :"/pets/new.html"
     else
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end
@@ -36,6 +38,7 @@ class PetsController < ApplicationController
       @user = current_user
       erb :"/pets/show.html"
     else
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end
@@ -45,6 +48,7 @@ class PetsController < ApplicationController
     if logged_in? and @pet.user_id == current_user.id
      erb :"/pets/edit.html"
    else
+    @error = "Please, log in!"
     redirect '/users/login'
    end
   end
@@ -59,7 +63,7 @@ class PetsController < ApplicationController
     if @pet.save
       redirect "/users/pets/#{@pet.id}"
     else
-      @error = "please try again!"
+      @error = "Please, try again!"
       erb :'/pets/edit.html'
     end
   end

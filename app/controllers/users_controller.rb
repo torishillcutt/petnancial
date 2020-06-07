@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         @user = user
         erb :"/users/login.html"
       else 
-        @error = "Please try again"
+        @error = "Please, try again"
         erb :'/users/new.html'
       end
     else
@@ -35,26 +35,8 @@ class UsersController < ApplicationController
       @user = current_user
     erb :"/users/show.html"
     else
+      @error = "Please, log in!"
       redirect '/users/login'
     end
   end
-
-  # GET: /users/5/edit
-  #get "/users/:id/edit" do
-  #  if logged_in && session[:user_id] == params[:id]
-  #    @user = current_user
-  #  erb :"/users/edit.html"
-  #  else
-  #    redirect '/users/login'
-  #  end
-  #end
-
-  # PATCH: /users/5
-  # redirect "/users/:id"
-  #end
-
-  # DELETE: /users/5/delete
-  #delete "/users/:id/delete" do
-   # redirect "/users"
-  #end
 end
