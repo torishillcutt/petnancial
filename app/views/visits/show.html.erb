@@ -1,0 +1,11 @@
+<h1>Visit Date:  <%= @visit.date %></h1>
+<h2>Cost:  $<%= @visit.cost %></h2>
+<p>Location:  <%= @visit.vet_location %></p>
+<p>Description:  <%= @visit.description %></p>
+<br><br>
+
+<h2>Vet:</h2>
+
+
+<h3><%= @visit.vet.name.capitalize %></h3>
+<p>Specialty: <%= @visit.vet.specialty %></p>

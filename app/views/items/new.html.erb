@@ -1,4 +1,9 @@
 <h1>Add a new item!</h1>
+
+<% if @error %>
+<p><%= @error %></p>
+<% end%>
+
 <form action="/users/pets/<%= @pet.id %>/items" method="POST">
 <label>Name: </label>
 <input type="text" name="name" />

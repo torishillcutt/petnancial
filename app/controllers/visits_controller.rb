@@ -52,7 +52,7 @@ class VisitsController < ApplicationController
   
     get "/users/pets/:id/visits/:visit_id" do
         @pet = Pet.find(params[:id])
-        if logged_in && @pet.user_id == current_user.id
+        if logged_in? && @pet.user_id == current_user.id
           @visit = Visit.find(params[:visit_id])
           erb :"/visits/show.html"
         else
