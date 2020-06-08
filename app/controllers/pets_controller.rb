@@ -21,7 +21,6 @@ class PetsController < ApplicationController
   end
 
   post "/users/pets" do
-    #binding.pry
     pet = Pet.create(
       name: params[:name],
       age: params[:age].to_i,

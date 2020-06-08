@@ -1,6 +1,6 @@
 <h1>Welcome, <%= @user.name %>!</h1>
 <br>
-<button><a href="/users/pets/new">Add a new pet!</a></button>
+<button><a href="/users/pets/new">Add a new pet!</a></button>     <button><a href="/logout">Log out</a></button>
 <br>
 <br>
 <% if @user.pets.length > 0 %>
@@ -31,10 +31,5 @@
 <% end%>
 
 
-
-<br>
 <% end %>
 
-<br>
-
-    <button><a href="/logout">Log out</a></button>
