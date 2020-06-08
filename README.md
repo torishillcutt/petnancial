@@ -1,5 +1,5 @@
 # Petnancial
-Petnancial is a sinatra application that helps users track their pets expenses.  Sign up and add your pet, their items and vet visits, and let Petnancial tell you their monthly average cost, your most expensive, and least expensive pet.  Petnancial becomes more accurate the more information you provide.
+Petnancial is a sinatra application that helps users track their pets' expenses.  Sign up and add your pet, their items and vet visits, and let Petnancial tell you their monthly average cost, your most expensive, and least expensive pet.  Petnancial becomes more accurate the more information you provide.
 
 ## Video Walkthrough
 
