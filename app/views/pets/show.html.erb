@@ -1,6 +1,12 @@
+<% if !!@pet.average_cost %>
+  <h1><%= @pet.name %>'s Average Cost:  $<%=  @pet.average_cost %></h1>
+  <h2>This projected average monthly cost will become more accurate with additional items and veterinary visits!</h2>
+<% else %>
+  <h1><%= @pet.name %></h1>
+  <h2>Please add items and veterinary visits for Petnancial to calculate <%= @pet.name %>'s average cost.</h2>
+<% end %>
 
-<h1><%= @pet.name %>'s Average Cost:  $<%=  @pet.average_cost %></h1>
-<h2>This projected average monthly cost will become more accurate with additional items and veterinary visits!</h2>
+
 
 <button><a href="/users/<%= @pet.user_id %>">Return Home</a></button>  <button><a href="/logout">Log out</a></button> <button><a href="/users/pets/<%= @pet.id %>/items/new">Add an Item</a></button> <button><a href="/users/pets/<%= @pet.id %>/visits/new">Add a vet visit</a></button>
 
